@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+/* We add the BS4 css before the index.css so we can overide 
+BS4 css if needed */
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
