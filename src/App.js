@@ -12,6 +12,7 @@ import './App.css';
         dishes: DISHES
       };
     }
+    
     render(){
       return (
         <div className="App">
@@ -38,19 +39,14 @@ import './App.css';
             >
               Learn React
             </a>
-            
-            
+          
           </header>
 
           <body className="App-body">
 
-        
-
             <p>This is my body text</p>
 
           </body>
-          
-          
         </div>
       );
     }
