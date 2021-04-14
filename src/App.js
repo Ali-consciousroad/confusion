@@ -1,18 +1,27 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import { Navbar, NavbarBrand } from 'reactstrap';
+// Import the dishes from the shared folder 
 import { DISHES } from './shared/dishes';
+// Import the MenuComponent.js file
 import Menu from './components/MenuComponent';
 import './App.css';
 
+  /* To define the state, we need to create it inside a constructor first */
   class App extends Component {
     constructor(props) {
       super(props);
+      {/*
+        Code modularization: 
+        - Dishes from the menu have been deleted and added inside the MenuComponents.js file
+        - Define the state by importing all the dishes 
+
+      */}
       this.state = {
         dishes: DISHES
       };
     }
-    
+
     render(){
       return (
         <div className="App">
@@ -22,7 +31,13 @@ import './App.css';
             </div>
           </Navbar>
 
-          {/* Display the MenuComponent.js content */}
+          
+          {/* Code modularization:
+          
+          - Display the MenuComponent.js content 
+          - Make the dishes available as props to the menu component
+          */}
+          {/*<Menu />*/}
           <Menu dishes={this.state.dishes}/>
 
           <header className="App-header">
