@@ -1,3 +1,10 @@
+/*
+- Create a new DishdetailComponent
+- Include it into the menu compponent's view
+- Pass the selected dish infor as props to the DishdetailComponent (from the MenuComponent?)
+- 
+*/
+
 import React, { Component } from 'react';
 import { Media } from 'reactstrap';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,
@@ -47,5 +54,5 @@ class DishDetail extends Component {
     }
 }
 
-// Export the DishDetail class
+// DishDetail class is now allowed to be imported
 export default DishDetail;
