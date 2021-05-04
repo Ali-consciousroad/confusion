@@ -8,7 +8,7 @@ import DishDetail from './DishdetailComponent';
 class Menu extends Component {
     constructor(props) {
         super(props);
-
+        /* State object */
         this.state = {
             /* 
                 Make the pictures responsive to clicks
@@ -50,6 +50,24 @@ class Menu extends Component {
             );
     }
 
+    // Display comments method
+    renderComment(dish){
+        if (dish != null)
+        
+            return(
+                <Card>
+                    <CardBody>
+                      <CardText>{dish.comments}</CardText>
+                    </CardBody>
+                </Card>
+            );
+        else
+            {/* Return an empty div if dish == null */}
+            return(
+                <div></div>
+            );
+    }
+
     render() {
         {/*
             - Use of this.props instead of this.state, props allows child components to read values from parent components 
@@ -81,6 +99,12 @@ class Menu extends Component {
                     {/* Display the card inside the second row */}
                     {this.renderDish(this.state.selectedDish)}
                   </div>
+                  {/* Display the comment inside the second row */}
+                  {/*
+                  <div className="col-12 col-md-5 m-1">
+                    {this.renderComment(this.state.selectedDish)}
+                  </div>
+                  */}
                 </div>
             </div>
         );

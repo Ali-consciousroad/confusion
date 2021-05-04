@@ -10,11 +10,11 @@ import './App.css';
   class App extends Component {
     constructor(props) {
       super(props);
-      {/*
+      /*
         Code modularization: 
-        - Dishes from the menu have been deleted and added inside the MenuComponents.js file
+        - Dishes from the menu have been deleted and added inside the MenuComponents.js file instead
         - Define the state by importing all the dishes 
-      */}
+      */
       this.state = {
         dishes: DISHES
       };
@@ -28,20 +28,15 @@ import './App.css';
               <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
             </div>
           </Navbar>
-
-          
           {/* Code modularization:
-          
+
           - Display the MenuComponent.js content 
           - Make the dishes available as props to the menu component
           */}
           {/*<Menu />*/}
           <Menu dishes={this.state.dishes}/>
-
           <body className="App-body">
-
             <p>This is my body text</p>
-
           </body>
         </div>
       );
