@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Media } from "reactstrap";
 import {
   Card,
   CardImg,
@@ -7,13 +6,14 @@ import {
   CardText,
   CardBody,
   CardTitle,
+  Form,
 } from "reactstrap";
 
 class Menu extends Component {
   constructor(props) {
     super(props);
 
-    // Initialize the state
+    // Initialize the state for the
     this.state = {
       selectedDish: null,
     };
@@ -40,6 +40,20 @@ class Menu extends Component {
     else return <div></div>;
   }
 
+  renderComment(dish) {
+    if (dish != null)
+      return (
+        <Card>
+          {/* Use the same idea than below to display a card image */}
+          <CardBody>
+            <CardTitle>Comments</CardTitle>
+            <CardText>{dish.comment}</CardText>
+          </CardBody>
+        </Card>
+      );
+    else return <div></div>;
+  }
+
   render() {
     // Logic
     // Map over each element of the dishes array and display them inside cards 
@@ -51,7 +65,7 @@ class Menu extends Component {
         <div className="col-12 col-md-5 m-1">
           {/* We now use Bootstrap Card instead of Bootstrap Media for a better UI */}
           {/* Key helps React identify each element of the Array uniquely and update only that one when needed */}
-          {/* Add here an event handler to respond to the click event */}
+          {/* Add here an event handler to respond to the click event and execute it */}
           <Card key={dish.id} onClick={() => this.onDishSelect(dish)}>
             <CardImg width="100%" src={dish.image} alt={dish.name} />
             <CardImgOverlay>
@@ -61,6 +75,21 @@ class Menu extends Component {
         </div>
       );
     });
+
+    //Map over each comment from the comments array for the selected dish 
+    // const comment = this.props.dishes.comments.map((comment) => {
+    //   return (
+    //     <div className="col-12 col-md-5 m-1">
+    //       {/* We now use Bootstrap Card instead of Bootstrap Media for a better UI */}
+    //       {/* Key helps React identify each element of the Array uniquely and update only that one when needed */}
+    //       {/* Add here an event handler to respond to the click event and execute it */}
+    //       <p width="100%" onClick={() => this.onDishSelect(dish)}>
+    //           <p>{dish.comment}</p>
+    //       </p>
+    //     </div>
+    //   );
+    // });
+
     // View of the component
     return (
       <div className="container">
@@ -68,10 +97,18 @@ class Menu extends Component {
         <div className="row">
           {menu}
         </div>
+        <div>
+          {/* {comment} */}
+        </div>
         <div className="row">
           <div className="col-12 col-md-5 m-1">
             {/* Render the dish selected by the user | Why do we use state instead of props here? */}
+            {/* Point to the selectedDish event handler */}
             {this.renderDish(this.state.selectedDish)}
+          </div>
+          <div className="col-12 col-md-5 m-1">
+            {/* Render the dish selected by the user | Why do we use state instead of props here? */}
+            {this.renderComment(this.state.selectedDish)}
           </div>
         </div>
       </div>

@@ -23,8 +23,8 @@ class App extends Component {
 
         {/* Display the MenuComponent.js content */}
         {/* Add the dishes as props to the Menu component */}
-        <Menu dishes={this.state.dishes} />
-
+        <Menu dishes={this.state.dishes}/>
+        
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
