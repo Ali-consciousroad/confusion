@@ -58,12 +58,13 @@ class Menu extends Component {
             to read values from parent components. Data is taken down from the App component. 
             - Use card component instead of the media object from Reactstrap
         */}
+        // Menu logic with conditionial rendering
         const menu = this.props.dishes.map((dish) => {
             return (
               <div  className="col-12 col-md-5 m-1">
                 <Card key={dish.id}
-                /* Make the cards responsive to clicks */
-                  onClick={() => this.onDishSelect(dish)}>
+                      /* Make the menu cards responsive to clicks */
+                      onClick={() => this.onDishSelect(dish)}>
                   <CardImg width="100%" src={dish.image} alt={dish.name} />
                   <CardImgOverlay>
                       <CardTitle>{dish.name}</CardTitle>
@@ -75,14 +76,16 @@ class Menu extends Component {
 
         return (
             <div className="container">
+                {/* First row: Display the menu */}
                 <div className="row">
                     {menu}
                 </div>
+                {/* Second row: Display the content */}
                 <div className="row">
-                  <div  className="col-12 col-md-5 m-1">
-                    {/* Display the card inside the second row */}
+                  {/* <div  className="col-12 col-md-5 m-1">
                     {this.renderDish(this.state.selectedDish)}
-                  </div>
+                  </div> */}
+                    <DishDetail />
                   {/* Display the comment inside the second row */}
                   {/*
                   <div className="col-12 col-md-5 m-1">
@@ -93,7 +96,6 @@ class Menu extends Component {
             </div>
         );
     }
-    
 }
 
 export default Menu;
