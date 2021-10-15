@@ -24,38 +24,56 @@ class DishDetail extends Component {
 
     // Return a <div> from the render() function
     
-    render() {
-        const menu = this.props.dishes.map((dish) => {
-            return (
-              <div className="col-12 col-md-5 m-1">
-                <Card key={dish.id}
-                  onClick={() => this.onDishSelect(dish)}>
-                  <CardImg width="100%" src={dish.image} alt={dish.name} />
-                  <CardImgOverlay>
-                      <CardTitle>{dish.name}</CardTitle>
-                  </CardImgOverlay>
-                </Card>
-              </div>
-            );
-        });
+    // render() {
+    //     const menu = this.props.dishes.map((dish) => {
+    //         return (
+    //           <div className="col-12 col-md-5 m-1">
+    //             <Card key={dish.id}
+    //               onClick={() => this.onDishSelect(dish)}>
+    //               <CardImg width="100%" src={dish.image} alt={dish.name} />
+    //               <CardImgOverlay>
+    //                   <CardTitle>{dish.name}</CardTitle>
+    //               </CardImgOverlay>
+    //             </Card>
+    //           </div>
+    //         );
+    //     });
+
+          // Display comments method
+          renderComment(dish){
+            if (dish != null)
+            
+                return(
+                    <Card>
+                        <CardBody>
+                          <CardText>{dish.comments}</CardText>
+                        </CardBody>
+                    </Card>
+                );
+            else
+                {/* Return an empty div if dish == null */}
+                return(
+                    <div></div>
+                );
+          }
         
-        return (
-            <div className="container">
-                <div className="row">
-                    {menu}
-                </div>
-                <div className="row">
-                  <div className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.state.selectedDish)}
-                  </div>
-                  <div className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.state.selectedDish.comments)}
-                  </div>
-                </div>
+    //     return (
+    //         <div className="container">
+    //             <div className="row">
+    //                 {menu}
+    //             </div>
+    //             <div className="row">
+    //               <div className="col-12 col-md-5 m-1">
+    //                 {this.renderDish(this.state.selectedDish)}
+    //               </div>
+    //               <div className="col-12 col-md-5 m-1">
+    //                 {this.renderDish(this.state.selectedDish.comments)}
+    //               </div>
+    //             </div>
                 
-            </div> 
-        );
-    }  
+    //         </div> 
+    //     );
+    // }  
 }
 
 // DishDetail class is now allowed to be imported

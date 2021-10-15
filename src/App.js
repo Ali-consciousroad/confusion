@@ -5,7 +5,8 @@ import { DISHES } from './shared/dishes';
 // Import the MenuComponent.js file
 import Menu from './components/MenuComponent';
 import './App.css';
-
+import DishDetail from './components/DishdetailComponent';
+  // Component creation 
   /* To create a state, a constructor need to be created first */
   class App extends Component {
     constructor(props) {
@@ -15,21 +16,21 @@ import './App.css';
         - Dishes from the menu have been deleted and added inside the MenuComponents.js file instead
         - Define the state by importing all the dishes 
       */
+      // Move the state up from the dishes component to the App component 
       this.state = {
         dishes: DISHES
       };
     }
-
+    // VIEW
     render(){
       return (
         <div className="App">
-          <Navbar dark color="primary">
+          <Navbar dark color="danger">
             <div className="container">
               <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
             </div>
           </Navbar>
           {/* Code modularization:
-
           - Display the MenuComponent.js content 
           - Make the dishes available as props to the menu component
           */}

@@ -18,6 +18,7 @@ class Menu extends Component {
         }
     }
 
+    // LOGIC
     /* 
         - Select the dish with the onDishSelect method
         - Use dish as the parameter
@@ -27,7 +28,8 @@ class Menu extends Component {
         this.setState({ selectedDish: dish});
     }
 
-    // Display each dish
+    // VIEW
+    // Conditional rendering of each dish
     renderDish(dish) {
         {/* 
             Return a card if the dish is not null 
@@ -50,33 +52,15 @@ class Menu extends Component {
             );
     }
 
-    // Display comments method
-    renderComment(dish){
-        if (dish != null)
-        
-            return(
-                <Card>
-                    <CardBody>
-                      <CardText>{dish.comments}</CardText>
-                    </CardBody>
-                </Card>
-            );
-        else
-            {/* Return an empty div if dish == null */}
-            return(
-                <div></div>
-            );
-    }
-
     render() {
         {/*
-            - Use of this.props instead of this.state, props allows child components to read values from parent components 
+            - Use of this.props instead of this.state, props allows child components 
+            to read values from parent components. Data is taken down from the App component. 
             - Use card component instead of the media object from Reactstrap
         */}
         const menu = this.props.dishes.map((dish) => {
             return (
               <div  className="col-12 col-md-5 m-1">
-
                 <Card key={dish.id}
                 /* Make the cards responsive to clicks */
                   onClick={() => this.onDishSelect(dish)}>
