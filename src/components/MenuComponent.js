@@ -82,10 +82,13 @@ class Menu extends Component {
                 </div>
                 {/* Second row: Display the content */}
                 <div className="row">
-                  {/* <div  className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.state.selectedDish)}
-                  </div> */}
-                    <DishDetail />
+
+                  <div  className="col-12 col-md-5 m-1">
+                    {/* Display the card inside the second row */}
+                    {/* {this.renderDish(this.state.selectedDish)} */}
+                    {DishDetail}
+                  </div>
+
                   {/* Display the comment inside the second row */}
                   {/*
                   <div className="col-12 col-md-5 m-1">
