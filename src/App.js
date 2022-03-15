@@ -16,7 +16,8 @@ import DishDetail from './components/DishdetailComponent';
         - Dishes from the menu have been deleted and added inside the MenuComponents.js file instead
         - Define the state by importing all the dishes 
       */
-      // Move the state up from the dishes component to the App component 
+      // Define dishes property 
+      // State moved up from the menu component 
       this.state = {
         dishes: DISHES
       };
