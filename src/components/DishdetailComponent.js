@@ -28,6 +28,7 @@ class DishDetail extends Component {
 
           // Display comments method
           renderComment(dish){
+            console.log("hello world");
             if (dish != null)
             
                 return(
@@ -65,6 +66,7 @@ class DishDetail extends Component {
             <div className="container">
                 <div className="row">
                     {menu}
+                    { console.log("hello world 1") }
                 </div>
                 <div className="row">
                   <div className="col-12 col-md-5 m-1">

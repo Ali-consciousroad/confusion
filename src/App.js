@@ -16,21 +16,24 @@ class App extends Component {
         - Dishes from the menu have been deleted and added inside the MenuComponents.js file instead
         - Define the state by importing all the dishes 
       */
-    // Move the state up from the dishes component to the App component
-    this.state = {
-      dishes: DISHES,
-    };
-  }
-  // VIEW
-  render() {
-    return (
-      <div className="App">
-        <Navbar dark color="danger">
-          <div className="container">
-            <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-          </div>
-        </Navbar>
-        <body className="App-body">
+        
+      // Define dishes property 
+      // State moved up from the menu component 
+      this.state = {
+        dishes: DISHES,
+      };
+    }
+    // VIEW
+    render(){
+      return (
+        <div className="App">
+          <Navbar dark color="danger">
+            <div className="container">
+              <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
+            </div>
+          </Navbar>
+          <body className="App-body">
+
           {/* Code modularization:
           - Display the MenuComponent.js content 
           - Make the dishes available as props to the menu component
