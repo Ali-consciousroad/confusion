@@ -33,7 +33,6 @@ class App extends Component {
             </div>
           </Navbar>
           <body className="App-body">
-
           {/* Code modularization:
           - Display the MenuComponent.js content 
           - Make the dishes available as props to the menu component

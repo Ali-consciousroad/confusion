@@ -18,7 +18,7 @@ class DishDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedDish: null
+            selectedDetail: null
         }
     }
 

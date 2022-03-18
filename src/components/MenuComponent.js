@@ -21,16 +21,18 @@ class Menu extends Component {
 
     // LOGIC
     /* 
+        Event Handler 
         - Select the dish with the onDishSelect method
         - Use dish as the parameter
         - Change the state of our component NOTE: always use the .setState method to do that
     */
+    // Modifiy the state with setState with the selected dish  
     onDishSelect(dish) {
         this.setState({ selectedDish: dish});
     }
 
     // VIEW
-    // Conditional rendering of each dish
+    // Render the selected dish 
     renderDish(dish) {
         {/* 
             Return a card if the dish is not null 
@@ -43,6 +45,7 @@ class Menu extends Component {
                     <CardBody>
                       <CardTitle>{dish.name}</CardTitle>
                       <CardText>{dish.description}</CardText>
+                      {/* <CardText>{dish.comments}</CardText> */}
                     </CardBody>
                 </Card>
             );
@@ -53,11 +56,10 @@ class Menu extends Component {
             );
     }
 
-    // Display comments method
+    // Render the comments of the selected dish
     renderComment(dish){
         console.log("hello world");
         if (dish != null)
-        
             return(
                 <Card>
                     <CardBody>
@@ -79,17 +81,16 @@ class Menu extends Component {
             to read values from the App parent component. Data is taken down from the App component. 
             - Use card component instead of the media object from Reactstrap
         */}
-        // Menu logic with conditionial rendering
 
-        // Map over all the dishes and display them 
+        // Map over all the dishes to display the menu
         console.log(this.props);
         const menu = this.props.dishes.map((dish) => {
             return (
-              <div  className="col-12 col-md-5 m-1">
+              <div className="col-12 col-md-5 m-1">
                 <Card key={dish.id}
-                      /* Make the menu cards responsive to clicks */
+                      /* Make the menu cards responsive to clicks 
+                         on click modifiy the state by making a call to our event handler */
                       onClick={() => this.onDishSelect(dish)}>
-
                   <CardImg width="100%" src={dish.image} alt={dish.name} />
                   <CardImgOverlay>
                       <CardTitle>{dish.name}</CardTitle>
@@ -100,20 +101,20 @@ class Menu extends Component {
             );
         });
 
-        const comment = this.props.dishes.map((dish) => {
-            return (
-              <div  className="col-12 col-md-5 m-1">
-                <Card key={dish.id}
-                      /* Make the menu cards responsive to clicks */
-                      onClick={() => this.onDishSelect(dish)}>
-                  <CardImg width="100%" src={dish.image} alt={dish.name} />
-                  <CardImgOverlay>
-                      <CardTitle>{dish.name}</CardTitle>
-                  </CardImgOverlay>
-                </Card>
-              </div>
-            );
-        });
+        // const comment = this.props.dishes.map((dish) => {
+        //     return (
+        //       <div  className="col-12 col-md-5 m-1">
+        //         <Card key={dish.id}
+        //               /* Make the menu cards responsive to clicks */
+        //               onClick={() => this.onDishSelect(dish)}>
+        //           <CardImg width="100%" src={dish.image} alt={dish.name} />
+        //           <CardImgOverlay>
+        //               <CardTitle>{dish.name}</CardTitle>
+        //           </CardImgOverlay>
+        //         </Card>
+        //       </div>
+        //     );
+        // });
 
         return (
             <div className="container">
@@ -123,18 +124,16 @@ class Menu extends Component {
                 </div>
                 {/* Second row: Display the content */}
                 <div className="row">
-
                   <div  className="col-12 col-md-5 m-1">
                     {/* Display the card inside the second row */}
                     {this.renderDish(this.state.selectedDish)}
-                    {/* {DishDetail} */}
+                    {/* <DishDetail /> */}
                   </div>
                   {/* Display the comment inside the second row */}
-                  {/*
+                  
                   <div className="col-12 col-md-5 m-1">
-
-                    {this.renderComment(this.state.selectedDish)}
-                  </div> */}
+                    {/* {this.renderComment(this.state.selectedDish)} */}
+                  </div> 
                 </div>
             </div>
         );
