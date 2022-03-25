@@ -30,7 +30,6 @@ class DishDetail extends Component {
           renderComment(dish){
             console.log("hello world");
             if (dish != null)
-            
                 return(
                     <Card>
                         <CardBody>

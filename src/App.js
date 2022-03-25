@@ -37,8 +37,8 @@ class App extends Component {
           - Display the MenuComponent.js content 
           - Make the dishes available as props to the menu component
           */}
-          {/*<Menu />*/}
           <Menu dishes={this.state.dishes} />
+          {/* <DishDetail comments={this.state.comments} />   */}
         </body>
       </div>
     );

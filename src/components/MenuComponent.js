@@ -125,9 +125,13 @@ class Menu extends Component {
                 {/* Second row: Display the content */}
                 <div className="row">
                   <div  className="col-12 col-md-5 m-1">
-                    {/* Display the card inside the second row */}
-                    {this.renderDish(this.state.selectedDish)}
-                    {/* <DishDetail /> */}
+                    {/* Display the selected card */}
+                    {/* First way to do it */}
+                    {/* {this.renderDish(this.state.selectedDish)} */}
+                    {/* Second way to do it with code modularization by using DishDetail 
+                    Make the selected dishes available as props to DishDetail */}
+                    <DishDetail dish={this.state.selectedDish} /> 
+                    {/* <DishDetail dish={this.props.selectedDish} comments={this.props.comments} /> */} 
                   </div>
                   {/* Display the comment inside the second row */}
                   
