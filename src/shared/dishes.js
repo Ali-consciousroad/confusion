@@ -1,7 +1,7 @@
 /*  
     Code modularization : 
     - Remove all the dishes from the MenuComponent.js file with all the dishes and their details (description, comments etc.) 
-    - Stored them inside a array and exported through the DISHES constant inside our app.js file
+    - Stored them inside a array exported through the DISHES constant inside our app.js file
 
 */
 export const DISHES =
