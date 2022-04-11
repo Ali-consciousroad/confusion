@@ -18,7 +18,6 @@ class Menu extends Component {
     this.state = {
       // Make the pictures responsive to clicks and give an initial " null " value
       selectedDish: null,
-      selectedComment: null,
     };
   }
   // LOGIC
@@ -29,11 +28,9 @@ class Menu extends Component {
         - Change the state of our component NOTE: always use the .setState method to do that
   */
   // Update the state object when the selected dishes and comments when a dish is selected 
-  onDishSelect(dish, comment) {
+  onDishSelect(dish) {
     this.setState({
-      selectedDish: dish,
-      selectedComment: comment,
-    });
+      selectedDish: dish });
   }
 
   // VIEW
@@ -48,10 +45,10 @@ class Menu extends Component {
        Data is taken down from the App component. 
        - Use card component instead of the media object from Reactstrap */
       // Display the object props we are using for our map 
-      console.log(this.props);
+      // console.log(this.props);
       const menu = this.props.dishes.map((dish) => {
       return (
-        <div className="col-12 col-md-5 m-1">
+        <div key={dish.id} className="col-12 col-md-5 m-1">
           <Card
             key={dish.id}
             /* Make the menu cards responsive to clicks 
@@ -61,7 +58,6 @@ class Menu extends Component {
             <CardImg width="100%" src={dish.image} alt={dish.name} />
             <CardImgOverlay>
               <CardTitle>{dish.name}</CardTitle>
-              {/* <CardText>{DISHES[comments.comment]}</CardText> */}
             </CardImgOverlay>
           </Card>
         </div>
@@ -78,13 +74,11 @@ class Menu extends Component {
           {/* Display the selected card */}
           {/* Second way to do it with code modularization by using DishDetail 
                     Make the selected dishe available as props to the DishDetailComponent */}
-          <DishDetail
-            dish={this.state.selectedDish}
-            comment={this.state.selectedComment}
-          />
-          {/* <DishDetail
-            comment={this.state.selectedComment}
-          /> */}
+          <div className="col-12 ml-1">
+            <DishDetail
+                dish={this.state.selectedDish}
+            />
+          </div>
         </div>
       </div>
     );

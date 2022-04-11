@@ -14,6 +14,8 @@ import {
   CardBody,
   CardTitle,
 } from "reactstrap";
+// Import the dishes 
+import { DISHES } from '../shared/dishes';
 
 class DishDetail extends Component {
   // CONSTRUCTOR
@@ -23,6 +25,9 @@ class DishDetail extends Component {
     */
   constructor(props) {
     super(props);
+    this.state = { 
+        dishes: DISHES,
+    };
   }
 
   // LOGIC
@@ -38,14 +43,15 @@ class DishDetail extends Component {
     // console.log(dish);
     if(dish != null)
       return (
+        <div key={dish.id} className="col-12 col-md-5 m-1">
         <Card>
           <CardImg top src={dish.image} alt={dish.name} />
           <CardBody>
             <CardTitle>{dish.name}</CardTitle>
             <CardText>{dish.description}</CardText>
-            {/* <CardText>{dish.comments}</CardText> */}
           </CardBody>
         </Card>
+        </div>
       );
     /* Return an empty div if dish == null */
     else {
@@ -56,20 +62,25 @@ class DishDetail extends Component {
   // 3.1 Function rendering the card containing the comments
   renderComments(comments) {
     // console.log(this.props);
-    // console.log(dish.comment);
     if (comments != null){
       // LOGIC
-      // console.log(this.props);
-      // console.log(dish.comments);  
+        /* Define the showComments functions and inititalize it by mapping the comments 
+        into a list displaying the commment and the author */
+        const showComments = comments.map((comment) => {
+            const d = new Date(comment.date).toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"}) ;
+            return(
+                <li key={comment.id}>
+                    <p>{comment.comment}</p>
+                    <p>--{comment.author}, {d}</p>
+                </li>
+            )
+        });
+
           return (
-            <Card>
-              <CardBody>
-                <div  className="col-12 col-md-5 m-1">
+                <div  className="col-12 col-md-5 m-1 list-unstyled comments">
                   <h4>Comments</h4>
-                  {comments.comment}
+                  {showComments}
                 </div>
-              </CardBody>
-            </Card>
           );
         }
     /* Return an empty div if dish == null */
@@ -88,38 +99,23 @@ class DishDetail extends Component {
 
   // Return a <div> from the render() function
   render() {
-    // console.log(this.props);
-    // // LOGIC
-    // // Map over all the comments of a dish and display the list of comment 
-    console.log(this.props);
-    // // Loop only if the comments array exists to avoid error  
-    const comment = this.props.comments?.map((comment) => {
+    const dish = this.props.dish;
+    if(dish == null)
+    {
+        return(
+            <div></div>
+        )
+    } else {
+        const dishItem = this.renderDish(dish);
+        const dishComment = this.renderComments(dish.comments);
         return (
-          <div  className="col-12 col-md-5 m-1">
-            <h4>Comment</h4>
-            {comment}
-          </div>
-        );
-    });
-  
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12 col-md-5 m-1">
-            {/* {console.log("hello world 1")} */}
-            {/* Display the selected dish inside a card */}
-            {/* {console.log(this.props.dish)} */}
-            {this.renderDish(this.props.dish)}
-          </div>
-            {/* Display the commments inside a card */}
-          <div className="col-12 col-md-5 m-1">
-            {/* Display the comments from the selected card */}
-            {/* {console.log(this.props.comments)} */} 
-          </div>
-        </div>
-      </div>
-    );
-  }
+            <div className="row">
+                {dishItem}
+                {dishComment}
+            </div>
+        )
+    }
+}
 }
 
 // DishDetail class is now allowed to be imported
