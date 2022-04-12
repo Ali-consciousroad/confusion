@@ -27,10 +27,11 @@ class Menu extends Component {
         - Use dish as the parameter
         - Change the state of our component NOTE: always use the .setState method to do that
   */
-  // Update the state object when the selected dishes and comments when a dish is selected 
+  // Update the state object when the selected dishes and comments when a dish is selected
   onDishSelect(dish) {
     this.setState({
-      selectedDish: dish });
+      selectedDish: dish,
+    });
   }
 
   // VIEW
@@ -44,9 +45,9 @@ class Menu extends Component {
     /* - Use of this.props instead of this.state, props allows the child component Menu to read values from the App parent component. 
        Data is taken down from the App component. 
        - Use card component instead of the media object from Reactstrap */
-      // Display the object props we are using for our map 
-      // console.log(this.props);
-      const menu = this.props.dishes.map((dish) => {
+    // Display the object props we are using for our map
+    // console.log(this.props);
+    const menu = this.props.dishes.map((dish) => {
       return (
         <div key={dish.id} className="col-12 col-md-5 m-1">
           <Card
@@ -75,9 +76,7 @@ class Menu extends Component {
           {/* Second way to do it with code modularization by using DishDetail 
                     Make the selected dishe available as props to the DishDetailComponent */}
           <div className="col-12 ml-1">
-            <DishDetail
-                dish={this.state.selectedDish}
-            />
+            <DishDetail dish={this.state.selectedDish} />
           </div>
         </div>
       </div>

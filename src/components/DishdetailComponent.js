@@ -14,8 +14,8 @@ import {
   CardBody,
   CardTitle,
 } from "reactstrap";
-// Import the dishes 
-import { DISHES } from '../shared/dishes';
+// Import the dishes
+import { DISHES } from "../shared/dishes";
 
 class DishDetail extends Component {
   // CONSTRUCTOR
@@ -25,8 +25,8 @@ class DishDetail extends Component {
     */
   constructor(props) {
     super(props);
-    this.state = { 
-        dishes: DISHES,
+    this.state = {
+      dishes: DISHES,
     };
   }
 
@@ -38,23 +38,22 @@ class DishDetail extends Component {
 
   // function rendering the selected dish inside a boostrap card
   renderDish(dish) {
-  /* Return a card if the dish is not null 
+    /* Return a card if the dish is not null 
     Display image, name and description of the card */
     // console.log(dish);
-    if(dish != null)
+    if (dish != null)
       return (
         <div key={dish.id} className="col-12 col-md-5 m-1">
-        <Card>
-          <CardImg top src={dish.image} alt={dish.name} />
-          <CardBody>
-            <CardTitle>{dish.name}</CardTitle>
-            <CardText>{dish.description}</CardText>
-          </CardBody>
-        </Card>
+          <Card>
+            <CardImg top src={dish.image} alt={dish.name} />
+            <CardBody>
+              <CardTitle>{dish.name}</CardTitle>
+              <CardText>{dish.description}</CardText>
+            </CardBody>
+          </Card>
         </div>
       );
-    /* Return an empty div if dish == null */
-    else {
+    /* Return an empty div if dish == null */ else {
       return <div></div>;
     }
   }
@@ -62,35 +61,40 @@ class DishDetail extends Component {
   // 3.1 Function rendering the card containing the comments
   renderComments(comments) {
     // console.log(this.props);
-    if (comments != null){
+    if (comments != null) {
       // LOGIC
-        /* Define the showComments functions and inititalize it by mapping the comments 
+      /* Define the showComments functions and inititalize it by mapping the comments 
         into a list displaying the commment and the author */
-        const showComments = comments.map((comment) => {
-            const d = new Date(comment.date).toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"}) ;
-            return(
-                <li key={comment.id}>
-                    <p>{comment.comment}</p>
-                    <p>--{comment.author}, {d}</p>
-                </li>
-            )
+      const showComments = comments.map((comment) => {
+        const d = new Date(comment.date).toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
         });
+        return (
+          <li key={comment.id}>
+            <p>{comment.comment}</p>
+            <p>
+              --{comment.author}, {d}
+            </p>
+          </li>
+        );
+      });
 
-          return (
-                <div  className="col-12 col-md-5 m-1 list-unstyled comments">
-                  <h4>Comments</h4>
-                  {showComments}
-                </div>
-          );
-        }
+      return (
+        <div className="col-12 col-md-5 m-1 list-unstyled comments">
+          <h4>Comments</h4>
+          {showComments}
+        </div>
+      );
+    } else {
     /* Return an empty div if dish == null */
-    else {
       return <div></div>;
     }
   }
 
-  /* Event handler: state update 
-  */
+  /* Event handler: state update
+   */
   onCommentSelect(comment) {
     this.setState({
       selectedComment: comment,
@@ -100,22 +104,19 @@ class DishDetail extends Component {
   // Return a <div> from the render() function
   render() {
     const dish = this.props.dish;
-    if(dish == null)
-    {
-        return(
-            <div></div>
-        )
+    if (dish == null) {
+      return <div></div>;
     } else {
-        const dishItem = this.renderDish(dish);
-        const dishComment = this.renderComments(dish.comments);
-        return (
-            <div className="row">
-                {dishItem}
-                {dishComment}
-            </div>
-        )
+      const dishItem = this.renderDish(dish);
+      const dishComment = this.renderComments(dish.comments);
+      return (
+        <div className="row">
+          {dishItem}
+          {dishComment}
+        </div>
+      );
     }
-}
+  }
 }
 
 // DishDetail class is now allowed to be imported
