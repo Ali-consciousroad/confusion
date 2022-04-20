@@ -1,8 +1,12 @@
 /*
 - Create a new DishdetailComponent
 - Include it into the menu component's view
-- Pass the selected dish infor as props to the DishdetailComponent (from the MenuComponent?)
+- Pass the selected dish info as props to the DishdetailComponent (from the MenuComponent?)
 */
+
+/* Dishdetail is supposed to not have any local state and receive data as props. 
+   So this component is supposed to work as a purely presentational component
+   It's seems not to be the case currently */
 
 import React, { Component } from "react";
 // import { Media } from "reactstrap";
@@ -110,9 +114,12 @@ class DishDetail extends Component {
       const dishItem = this.renderDish(dish);
       const dishComment = this.renderComments(dish.comments);
       return (
-        <div className="row">
-          {dishItem}
-          {dishComment}
+        // The container class align properly our content with the previous cards
+        <div class="container">
+          <div className="row">
+            {dishItem}
+            {dishComment}
+          </div>
         </div>
       );
     }
