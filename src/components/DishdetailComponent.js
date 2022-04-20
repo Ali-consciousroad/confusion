@@ -22,18 +22,6 @@ import {
 import { DISHES } from "../shared/dishes";
 
 class DishDetail extends Component {
-  // CONSTRUCTOR
-  /* 
-    Mandatory to call the super(props) method 
-    before implementing a constructor with React
-    */
-  constructor(props) {
-    super(props);
-    this.state = {
-      dishes: DISHES,
-    };
-  }
-
   // LOGIC
   // state update
   // onDishSelect(dish) {
