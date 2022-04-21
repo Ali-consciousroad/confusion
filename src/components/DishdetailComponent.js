@@ -22,6 +22,13 @@ import {
 import { DISHES } from "../shared/dishes";
 
 class DishDetail extends Component {
+  // componentDidMount(){  
+  //   console.log('DishDetail component componentDidMount invoked')
+  // }
+
+  // componentDidUpdate(){  
+  //   console.log('DishDetail component componentDidUpdate invoked')
+  // }
   // LOGIC
   // state update
   // onDishSelect(dish) {
@@ -95,6 +102,7 @@ class DishDetail extends Component {
 
   // Return a <div> from the render() function
   render() {
+    // console.log('DishDetail component render invoked')
     const dish = this.props.dish;
     if (dish == null) {
       return <div></div>;
