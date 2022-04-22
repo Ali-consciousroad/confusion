@@ -8,7 +8,7 @@
    So this component is supposed to work as a purely presentational component
    It's seems not to be the case currently */
 
-import React, { Component } from "react";
+import React from "react";
 // import { Media } from "reactstrap";
 import {
   Card,
@@ -18,25 +18,9 @@ import {
   CardBody,
   CardTitle,
 } from "reactstrap";
-// Import the dishes
-import { DISHES } from "../shared/dishes";
-
-class DishDetail extends Component {
-  // componentDidMount(){  
-  //   console.log('DishDetail component componentDidMount invoked')
-  // }
-
-  // componentDidUpdate(){  
-  //   console.log('DishDetail component componentDidUpdate invoked')
-  // }
-  // LOGIC
-  // state update
-  // onDishSelect(dish) {
-  //     this.setState({ selectedDish: dish});
-  // }
 
   // function rendering the selected dish inside a boostrap card
-  renderDish(dish) {
+  function RenderDish(dish) {
     /* Return a card if the dish is not null 
     Display image, name and description of the card */
     // console.log(dish);
@@ -58,7 +42,7 @@ class DishDetail extends Component {
   }
 
   // 3.1 Function rendering the card containing the comments
-  renderComments(comments) {
+  function RenderComments(comments) {
     // console.log(this.props);
     if (comments != null) {
       // LOGIC
@@ -92,23 +76,15 @@ class DishDetail extends Component {
     }
   }
 
-  /* Event handler: state update
-   */
-  onCommentSelect(comment) {
-    this.setState({
-      selectedComment: comment,
-    });
-  }
-
   // Return a <div> from the render() function
-  render() {
+  const DishDetail = (props) => {
     // console.log('DishDetail component render invoked')
-    const dish = this.props.dish;
+    const dish = props.dish;
     if (dish == null) {
       return <div></div>;
     } else {
-      const dishItem = this.renderDish(dish);
-      const dishComment = this.renderComments(dish.comments);
+      const dishItem = RenderDish(dish);
+      const dishComment = RenderComments(dish.comments);
       return (
         // The container class align properly our content with the previous cards
         <div class="container">
@@ -120,7 +96,7 @@ class DishDetail extends Component {
       );
     }
   }
-}
+
 
 // DishDetail class is now allowed to be imported
 export default DishDetail;

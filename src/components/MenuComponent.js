@@ -26,7 +26,6 @@ function RenderMenuItem({ dish, onClick }) {
 }
 
 // VIEW
-
 const Menu = (props) => {
   // LOGIC
   /* menu function: Map over all the dishes (DISHES array) to display the menu (a list of cards) */
