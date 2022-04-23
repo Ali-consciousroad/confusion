@@ -2,12 +2,14 @@
 // We add everything related to the state in the container component
 // Code taken from App.js and adapated here 
 import React, { Component } from "react";
+import Header from './HeaderComponent';
 import { Navbar, NavbarBrand } from "reactstrap";
 // Import the dishes array from the shared folder
 import { DISHES } from "../shared/dishes";
 // Import the MenuComponent.js file
 import Menu from "./MenuComponent";
 import DishDetail from "./DishdetailComponent";
+import Footer from './FooterComponent';
 
 class Main extends Component {
   constructor(props) {
@@ -41,9 +43,11 @@ class Main extends Component {
           - Make the dishes available as props to the child component
           */}
           {/* {console.log(DISHES)} */}
+          <Header />
           <Menu dishes={this.state.dishes} 
                 onClick={(dishId) => this.onDishSelect(dishId)} /> 
           <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
+          <Footer />
         </body>
       </div>
     );
