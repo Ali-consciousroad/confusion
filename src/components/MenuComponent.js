@@ -13,9 +13,6 @@ function RenderMenuItem({ dish, onClick }) {
   return (
     <Card
       key={dish.id}
-      /* Make the menu cards responsive to clicks 
-                      on click modifiy the state by making a call to our event handler */
-      onClick={() => onClick(dish.id)}
     >
       <CardImg width="100%" src={dish.image} alt={dish.name} />
       <CardImgOverlay>

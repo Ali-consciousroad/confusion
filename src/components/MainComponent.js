@@ -3,7 +3,9 @@
 // Code taken from App.js and adapated here 
 import React, { Component } from "react";
 import Header from './HeaderComponent';
+import Home from './HomeComponent';
 import { Navbar, NavbarBrand } from "reactstrap";
+import { Switch, Route, Redirect } from 'react-router-dom';
 // Import the dishes array from the shared folder
 import { DISHES } from "../shared/dishes";
 // Import the MenuComponent.js file
@@ -30,6 +32,13 @@ class Main extends Component {
 
     // VIEW
     render(){
+      const HomePage = () => {
+        return(
+            <Home 
+            />
+        );
+      }
+
       return (
         <div className="App">
           <Navbar dark color="danger">
@@ -38,15 +47,12 @@ class Main extends Component {
             </div>
           </Navbar>
           <body className="App-body">
-          {/* Code modularization:
-          - Display the MenuComponent.js content 
-          - Make the dishes available as props to the child component
-          */}
-          {/* {console.log(DISHES)} */}
           <Header />
-          <Menu dishes={this.state.dishes} 
-                onClick={(dishId) => this.onDishSelect(dishId)} /> 
-          <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
+            <Switch>
+                <Route path='/home' component={HomePage} />
+                <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
+                <Redirect to="/home" />
+            </Switch>
           <Footer />
         </body>
       </div>
