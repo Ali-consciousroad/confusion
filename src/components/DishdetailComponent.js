@@ -13,11 +13,13 @@ import React from "react";
 import {
   Card,
   CardImg,
-  CardImgOverlay,
   CardText,
   CardBody,
   CardTitle,
+  Breadcrumb, 
+  BreadcrumbItem
 } from "reactstrap";
+import { Link } from 'react-router-dom';
 
   // function rendering the selected dish inside a boostrap card
   function RenderDish(dish) {
@@ -89,9 +91,19 @@ import {
         // The container class align properly our content with the previous cards
         <div class="container">
           <div className="row">
-            {dishItem}
-            {dishComment}
+            <Breadcrumb>
+              <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+              <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+            </Breadcrumb>
+            <div className="col-12">
+              <h3>{props.dish.name}</h3>
+              <hr />
+            </div>
           </div>
+            <div className="row">
+              {dishItem}
+              {dishComment}
+            </div>
         </div>
       );
     }
