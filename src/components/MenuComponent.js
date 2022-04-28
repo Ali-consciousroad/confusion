@@ -4,8 +4,6 @@ import {
   Card,
   CardImg,
   CardImgOverlay,
-  CardText,
-  CardBody,
   CardTitle,
 } from "reactstrap";
 
