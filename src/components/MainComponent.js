@@ -16,6 +16,7 @@ import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
 import Footer from './FooterComponent';
+import About from './AboutComponent';
 
 class Main extends Component {
   constructor(props) {
@@ -29,9 +30,6 @@ class Main extends Component {
         leaders: LEADERS 
       };
     }
-
-  
-
 
   // Taken from the MenuComponent: Update the state object when the selected dishes and comments when a dish is selected
   onDishSelect(dishId) {
@@ -70,6 +68,7 @@ class Main extends Component {
           <Header />
             <Switch>
                 <Route path='/home' component={HomePage} />
+                <Route path='/aboutus' component={() => <About leaders={this.state.leaders} />} />
                 <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
                 <Route path='/menu/:dishId' component={DishWithId} />
                 <Route exact path='/contactus' component={Contact} />
