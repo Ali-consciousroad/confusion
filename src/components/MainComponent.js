@@ -49,6 +49,13 @@ class Main extends Component {
         );
       }
 
+      const AboutusPage = () => {
+        return(<About leaders={this.state.leaders} />);
+      }
+
+      // Simplified arrow function syntax
+      const MenuPage = () => <Menu dishes={this.state.dishes} />;
+
       // Extract the match prop from the Route component
       const DishWithId = ({match}) => {
         return(
@@ -68,8 +75,8 @@ class Main extends Component {
           <Header />
             <Switch>
                 <Route path='/home' component={HomePage} />
-                <Route path='/aboutus' component={() => <About leaders={this.state.leaders} />} />
-                <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
+                <Route path='/aboutus' component={AboutusPage} />
+                <Route exact path='/menu' component={MenuPage} />
                 <Route path='/menu/:dishId' component={DishWithId} />
                 <Route exact path='/contactus' component={Contact} />
                 <Redirect to="/home" />
