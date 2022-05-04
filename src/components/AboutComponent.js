@@ -3,18 +3,21 @@ import { Card, CardImg, CardTitle, CardBody, CardHeader, CardImgOverlay, Breadcr
 import { Link } from 'react-router-dom';
 
 function RenderLeader({ leader}) {
+    /* Destructure leader object properties so we can use them with a shorter syntax
+       Eg. {leader.image} -> {image} */
+    const { image, name, id, designation, description } = leader; 
     return (
-        <div key={leader.id} className="col-12 mt-5">
+        <div key={id} className="col-12 mt-5">
             <Media tag="li">
                 <Media left middle> 
-                    <Media object src={leader.image} alt={leader.name} />
+                    <Media object src={image} alt={name} />
                 </Media>
                     <Media body className="ml-5">
                         <Media heading>
                             {leader.name}
                         </Media>
-                        <p>{leader.designation}</p>
-                        <p>{leader.description}</p>
+                        <p>{designation}</p>
+                        <p>{description}</p>
                     </Media>
             </Media>
         </div>
@@ -25,7 +28,7 @@ const About = props => {
     const leaders = props.leaders.map((leader) => {
         return (
             // <p>Leader {leader.name}</p>
-            <RenderLeader leader={leader} onClick={props.onClick}/>
+            <RenderLeader leader={leader}/>
         );
     });
 
