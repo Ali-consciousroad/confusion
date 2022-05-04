@@ -25,7 +25,10 @@ function RenderLeader({ leader}) {
 }
 
 const About = props => {
-    const leaders = props.leaders.map((leader) => {
+    //console.log(props);
+    // Use destructuring to give access to the use of props in a more readable format and faster
+    const { leaders } = props;
+    const leadersList = leaders.map((leader) => {
         return (
             // <p>Leader {leader.name}</p>
             <RenderLeader leader={leader}/>
@@ -88,7 +91,7 @@ const About = props => {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        {leaders}
+                        {leadersList}
                     </Media>
                 </div>
             </div>
