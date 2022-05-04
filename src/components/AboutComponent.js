@@ -2,9 +2,10 @@ import React from 'react';
 import { Card, CardImg, CardTitle, CardBody, CardHeader, CardImgOverlay, Breadcrumb, BreadcrumbItem, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function RenderLeader({ leader}) {
-    /* Destructure leader object properties so we can use them with a shorter syntax
+const RenderLeader = ({leader}) => {
+    /* Destructure leader object props so we can use them with a shorter syntax
        Eg. {leader.image} -> {image} */
+    // console.log(leader);
     const { image, name, id, designation, description } = leader; 
     return (
         <div key={id} className="col-12 mt-5">
@@ -26,9 +27,7 @@ function RenderLeader({ leader}) {
 
 const About = props => {
     //console.log(props);
-    // Use destructuring to give access to the use of props in a more readable format and faster
-    const { leaders } = props;
-    const leadersList = leaders.map((leader) => {
+    const leaders = props.leaders.map((leader) => {
         return (
             // <p>Leader {leader.name}</p>
             <RenderLeader leader={leader}/>
@@ -91,7 +90,7 @@ const About = props => {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        {leadersList}
+                        {leaders}
                     </Media>
                 </div>
             </div>
