@@ -8,20 +8,20 @@ const RenderLeader = ({leader}) => {
     // console.log(leader);
     const { image, name, id, designation, description } = leader; 
     return (
-        <div key={id} className="col-12 mt-5">
+        <Media key={id} className="col-12 mt-5">
             <Media tag="li">
                 <Media left middle> 
                     <Media object src={image} alt={name} />
                 </Media>
                     <Media body className="ml-5">
                         <Media heading>
-                            {leader.name}
+                            {name}
                         </Media>
                         <p>{designation}</p>
                         <p>{description}</p>
                     </Media>
             </Media>
-        </div>
+        </Media>
     );
 }
 
