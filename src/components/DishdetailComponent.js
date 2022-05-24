@@ -10,13 +10,7 @@
 
 import React from "react";
 // import { Media } from "reactstrap";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  Breadcrumb, 
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
   BreadcrumbItem
 } from "reactstrap";
 import { Link } from 'react-router-dom';
@@ -108,7 +102,6 @@ import { Link } from 'react-router-dom';
       );
     }
   }
-
 
 // DishDetail class is now allowed to be imported
 export default DishDetail;

@@ -11,6 +11,7 @@ class App extends Component {
   // VIEW
   render() {
     return (
+      // Wrap our app with a Redux store 
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
