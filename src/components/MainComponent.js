@@ -15,6 +15,8 @@ import Footer from './FooterComponent';
 import About from './AboutComponent';
 
 const mapStateToProps = state => {
+  /* These properties become available as props to the MainComponent 
+  being derived from our Redux store */
   return {
     dishes: state.dishes,
     comments: state.comments,
@@ -25,12 +27,6 @@ const mapStateToProps = state => {
 class Main extends Component {
   constructor(props) {
     super(props);
-  }
-
-  // Taken from the MenuComponent: Update the state object when the selected dishes and comments when a dish is selected
-  onDishSelect(dishId) {
-    this.setState({
-      selectedDish: dishId});
   }
 
     // VIEW

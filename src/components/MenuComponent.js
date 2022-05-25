@@ -1,13 +1,7 @@
 import React from "react";
 // Import the card component from reactstrap
-import {
-  Card,
-  CardImg,
-  CardImgOverlay,
-  CardTitle,
-  Breadcrumb,
-  BreadcrumbItem
-} from "reactstrap";
+import { Card, CardImg, CardImgOverlay, CardTitle,
+  Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from 'react-router-dom';
 
 function RenderMenuItem({ dish }) {

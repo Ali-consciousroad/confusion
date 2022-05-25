@@ -16,7 +16,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb,
 import { Link } from 'react-router-dom';
 
   // function rendering the selected dish inside a boostrap card
-  function RenderDish(dish) {
+  function RenderDish({dish}) {
     /* Return a card if the dish is not null 
     Display image, name and description of the card */
     // console.log(dish);
@@ -38,7 +38,7 @@ import { Link } from 'react-router-dom';
   }
 
   // 3.1 Function rendering the card containing the comments
-  function RenderComments(comments) {
+  function RenderComments({comments}) {
     // console.log(this.props);
     if (comments != null) {
       // LOGIC
@@ -61,10 +61,10 @@ import { Link } from 'react-router-dom';
       });
 
       return (
-        <div className="col-12 col-md-5 m-1 list-unstyled comments">
+        <>
           <h4>Comments</h4>
           {showComments}
-        </div>
+        </>
       );
     } else {
     /* Return an empty div if dish == null */
@@ -79,8 +79,7 @@ import { Link } from 'react-router-dom';
     if (dish == null) {
       return <div></div>;
     } else {
-      const dishItem = RenderDish(dish);
-      const dishComment = RenderComments(dish.comments);
+      
       return (
         // The container class align properly our content with the previous cards
         <div class="container">
@@ -94,10 +93,14 @@ import { Link } from 'react-router-dom';
               <hr />
             </div>
           </div>
-            <div className="row">
-              {dishItem}
-              {dishComment}
+          <div className="row">
+            <div className="col-12 col-md5 m-1">
+            <RenderDish dish={props.dish} />
             </div>
+          </div>
+          <div className="col-12 col-md-5 m-1 list-unstyled" >
+            <RenderComments comments={props.comments} />
+          </div>
         </div>
       );
     }
