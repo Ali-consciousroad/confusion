@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom';
     // console.log(dish);
     if (dish != null)
       return (
-        <div key={dish.id} className="col-12 col-md-5 m-1">
+        <div key={dish.id}>
           <Card>
             <CardImg top src={dish.image} alt={dish.name} />
             <CardBody>
@@ -94,12 +94,12 @@ import { Link } from 'react-router-dom';
             </div>
           </div>
           <div className="row">
-            <div className="col-12 col-md5 m-1">
+            <div className="col-12 col-md-5 m-1">
             <RenderDish dish={props.dish} />
             </div>
-          </div>
-          <div className="col-12 col-md-5 m-1 list-unstyled" >
-            <RenderComments comments={props.comments} />
+            <div className="col-12 col-md-5 m-1 list-unstyled" >
+              <RenderComments comments={props.comments} />
+            </div>
           </div>
         </div>
       );
