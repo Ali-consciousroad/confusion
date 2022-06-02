@@ -14,9 +14,12 @@ import DishDetail from "./DishdetailComponent";
 import Footer from './FooterComponent';
 import About from './AboutComponent';
 
+ /* Function used to connect the part of the data from the store the component need. 
+  These properties become available as props to the MainComponent 
+  being derived from our Redux store 
+  In summary: Map the redux store states into props 
+  that will become available to the main component */
 const mapStateToProps = state => {
-  /* These properties become available as props to the MainComponent 
-  being derived from our Redux store */
   return {
     dishes: state.dishes,
     comments: state.comments,
@@ -80,5 +83,5 @@ class Main extends Component {
   }
 }
 
-// Connect the component to the Redux store
+// withRouter is needed to connect the router to the Redux store
 export default withRouter(connect(mapStateToProps)(Main));

@@ -10,6 +10,8 @@ export const initialState = {
     leaders: LEADERS
 };
 
+/* We can't change the state directly, 
+the reducer don't change the state here but we are just returning it */
 export const Reducer = (state = initialState, action) => {
     return state;
 };

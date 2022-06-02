@@ -8,11 +8,10 @@
    So this component is supposed to work as a purely presentational component
    It's seems not to be the case currently */
 
-import React from "react";
+import React, { Component } from "react";
 // import { Media } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
-  BreadcrumbItem
-} from "reactstrap";
+  BreadcrumbItem } from "reactstrap";
 import { Link } from 'react-router-dom';
 
   // function rendering the selected dish inside a boostrap card
@@ -64,6 +63,7 @@ import { Link } from 'react-router-dom';
         <>
           <h4>Comments</h4>
           {showComments}
+          <button>Submit comment</button>
         </>
       );
     } else {
@@ -73,38 +73,43 @@ import { Link } from 'react-router-dom';
   }
 
   // Return a <div> from the render() function
-  const DishDetail = (props) => {
+class DishDetail extends Component {
+  constructor(props) {
+    super(props);
+  };
+  
     // console.log('DishDetail component render invoked')
-    const dish = props.dish;
+    render(){
+    const dish = this.props.dish;
     if (dish == null) {
       return <div></div>;
     } else {
-      
       return (
         // The container class align properly our content with the previous cards
         <div class="container">
           <div className="row">
             <Breadcrumb>
               <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-              <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+              <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
             </Breadcrumb>
             <div className="col-12">
-              <h3>{props.dish.name}</h3>
+              <h3>{this.props.dish.name}</h3>
               <hr />
             </div>
           </div>
           <div className="row">
             <div className="col-12 col-md-5 m-1">
-            <RenderDish dish={props.dish} />
+              <RenderDish dish={this.props.dish} />
             </div>
             <div className="col-12 col-md-5 m-1 list-unstyled" >
-              <RenderComments comments={props.comments} />
+              <RenderComments comments={this.props.comments} />
             </div>
           </div>
         </div>
       );
     }
   }
+}
 
 // DishDetail class is now allowed to be imported
 export default DishDetail;

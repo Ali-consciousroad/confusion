@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
-
+// Make the store available
 const store = ConfigureStore();
 class App extends Component {
   // VIEW
