@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 class Header extends Component {
   constructor(props) {
     super(props);
-
     this.toggleNav = this.toggleNav.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -16,7 +15,6 @@ class Header extends Component {
       isModalOpen: false
     };
   }
-
 
   toggleNav() {
     this.setState({
@@ -68,7 +66,7 @@ class Header extends Component {
                                 {/* Add a login button */}
                                 <Button outline onClick={this.toggleModal}>
                                   <span className="fa fa-sign-in fa-lg"></span>  
-                                  Login
+                                  My Login
                                 </Button>                              
                               </NavItem>
                             </Nav>

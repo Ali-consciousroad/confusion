@@ -7,12 +7,13 @@
 /* Dishdetail is supposed to not have any local state and receive data as props. 
    So this component is supposed to work as a purely presentational component
    It's seems not to be the case currently */
-
 import React, { Component } from "react";
 // import { Media } from "reactstrap";
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
-  BreadcrumbItem } from "reactstrap";
+import { Card, CardImg, CardText, CardBody, CardTitle, Col, Breadcrumb, 
+  BreadcrumbItem, Button, Label, Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Link } from 'react-router-dom';
+// Import components needed for a localform
+import { Control, LocalForm, Errors } from 'react-redux-form';
 
   // function rendering the selected dish inside a boostrap card
   function RenderDish({dish}) {
@@ -63,7 +64,7 @@ import { Link } from 'react-router-dom';
         <>
           <h4>Comments</h4>
           {showComments}
-          <button>Submit comment</button>
+          <CommentForm />
         </>
       );
     } else {
@@ -72,11 +73,48 @@ import { Link } from 'react-router-dom';
     }
   }
 
+  // Display the comment form and the validation button
+  class CommentForm extends Component {
+    constructor(props){
+      super(props);
+      // this.handleSubmit = this.handleSubmit.bind(this);
+      // this.toggleModal = this.toggleModal.bind(this);
+
+      this.state = { 
+        isModalOpen: false
+      };
+    }
+
+    toggleModal() {
+      this.setState({
+        isModalOpen: !this.state.isModalOpen
+      })
+    }
+
+    handleSubmit(values) {
+      console('Current State is: ' + JSON.stringify(values));
+      alert('Current State is: ' + JSON.stringify(values));
+    }
+    render(){
+      return(
+        <div className="container">
+          <div className="row row-content">
+            <div className="col-12 col-md-9">
+              <div>
+                <button>Submit comment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  }
+
   // Return a <div> from the render() function
 class DishDetail extends Component {
   constructor(props) {
     super(props);
-  };
+  }
   
     // console.log('DishDetail component render invoked')
     render(){
