@@ -1,19 +1,8 @@
-/*
-- Create a new DishdetailComponent
-- Include it into the menu component's view
-- Pass the selected dish info as props to the DishdetailComponent (from the MenuComponent?)
-*/
-
-/* Dishdetail is supposed to not have any local state and receive data as props. 
-   So this component is supposed to work as a purely presentational component
-   It's seems not to be the case currently */
 import React, { Component } from "react";
 // import { Media } from "reactstrap";
-import { Card, CardImg, CardText, CardBody, CardTitle, Col, Breadcrumb, 
-  BreadcrumbItem, Button, Label, Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
+  BreadcrumbItem, Button, Label, Modal, ModalHeader, ModalBody, Form, FormGroup, Input} from "reactstrap";
 import { Link } from 'react-router-dom';
-// Import components needed for a localform
-import { Control, LocalForm, Errors } from 'react-redux-form';
 
   // function rendering the selected dish inside a boostrap card
   function RenderDish({dish}) {
@@ -78,34 +67,72 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
     constructor(props){
       super(props);
       // this.handleSubmit = this.handleSubmit.bind(this);
-      // this.toggleModal = this.toggleModal.bind(this);
+      this.toggleModal = this.toggleModal.bind(this);
+      this.handleComment = this.handleComment.bind(this);
 
       this.state = { 
         isModalOpen: false
       };
     }
 
+    // Set state modal to true when opened 
     toggleModal() {
       this.setState({
         isModalOpen: !this.state.isModalOpen
       })
     }
 
-    handleSubmit(values) {
-      console('Current State is: ' + JSON.stringify(values));
-      alert('Current State is: ' + JSON.stringify(values));
+    handleComment(event) {
+      this.toggleModal();
+      alert(" Rating: " + this.rating.value +
+            " Username: " + this.username.value + 
+            " Comment: " + this.comment.value);
+      event.preventDefault();
     }
+
     render(){
       return(
-        <div className="container">
-          <div className="row row-content">
-            <div className="col-12 col-md-9">
-              <div>
-                <button>Submit comment</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <>
+          <Button outline onClick={this.toggleModal}>
+            <span className="fa fa-sign-in fa-lg"></span>  
+            Submit Comment
+          </Button> 
+          <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+            <ModalHeader toggle={this.toggleModal}>Comment</ModalHeader>
+            <ModalBody>
+              <Form onSubmit={this.handleComment}>
+                <FormGroup>
+                  <Label htmlFor="rating">Rating</Label>
+                  <Input list="ratings" name="rating" id="rating"
+                    innerRef={(input) => this.rating = input} />
+                    <datalist id="ratings">
+                      <option value="1"/>
+                      <option value="2"/>
+                      <option value="3"/>
+                      <option value="4"/>
+                      <option value="5"/>
+                      <option value="6"/>
+                      <option value="7"/>
+                      <option value="8"/>
+                      <option value="9"/>
+                      <option value="10"/>
+                    </datalist>
+                </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="username">Username</Label>
+                  <Input type="text" id="username" name = "username"
+                    innerRef={(input) => this.username = input}/>
+                </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="">Comment</Label>
+                  <Input type="textarea" rows="8" name="comment"
+                  innerRef={(input) => this.comment = input} />
+                </FormGroup>
+                <Button type="submit" value="submit" color="primary">Comment</Button>
+              </Form>
+            </ModalBody>
+          </Modal>
+        </>
       )
     }
   }
