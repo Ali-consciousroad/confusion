@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 // import { Media } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
-  BreadcrumbItem, Button, Label, Modal, ModalHeader, ModalBody, Form, FormGroup, Input} from "reactstrap";
+  BreadcrumbItem, Button, Label, Modal, ModalHeader, ModalBody, Row} from "reactstrap";
 import { Link } from 'react-router-dom';
+import { Control, LocalForm, Errors } from 'react-redux-form';
 
   // function rendering the selected dish inside a boostrap card
   function RenderDish({dish}) {
@@ -68,7 +69,7 @@ import { Link } from 'react-router-dom';
       super(props);
       // this.handleSubmit = this.handleSubmit.bind(this);
       this.toggleModal = this.toggleModal.bind(this);
-      this.handleComment = this.handleComment.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
 
       this.state = { 
         isModalOpen: false
@@ -82,12 +83,10 @@ import { Link } from 'react-router-dom';
       })
     }
 
-    handleComment(event) {
+    handleSubmit(values) {
       this.toggleModal();
-      alert(" Rating: " + this.rating.value +
-            " Username: " + this.username.value + 
-            " Comment: " + this.comment.value);
-      event.preventDefault();
+      console.log('Current State is: ' + JSON.stringify(values));
+      alert('Current State is: ' + JSON.stringify(values));
     }
 
     render(){
@@ -100,36 +99,45 @@ import { Link } from 'react-router-dom';
           <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
             <ModalHeader toggle={this.toggleModal}>Comment</ModalHeader>
             <ModalBody>
-              <Form onSubmit={this.handleComment}>
-                <FormGroup>
+              <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                <Row className="form-group">
                   <Label htmlFor="rating">Rating</Label>
-                  <Input list="ratings" name="rating" id="rating"
-                    innerRef={(input) => this.rating = input} />
-                    <datalist id="ratings">
-                      <option value="1"/>
-                      <option value="2"/>
-                      <option value="3"/>
-                      <option value="4"/>
-                      <option value="5"/>
-                      <option value="6"/>
-                      <option value="7"/>
-                      <option value="8"/>
-                      <option value="9"/>
-                      <option value="10"/>
-                    </datalist>
-                </FormGroup>
-                <FormGroup>
+                  <Control.select
+                    className="form-control"
+                    model=".ratings" 
+                    type="list"
+                    name="rating" 
+                    id="rating"
+                    >
+                      <option value="1"> 1 </option>
+                      <option value="2"> 2 </option>
+                      <option value="3"> 3 </option>
+                      <option value="4"> 4 </option>
+                      <option value="5"> 5 </option>
+                  </Control.select> 
+                </Row>
+                <Row className="form-group">
                   <Label htmlFor="username">Username</Label>
-                  <Input type="text" id="username" name = "username"
-                    innerRef={(input) => this.username = input}/>
-                </FormGroup>
-                <FormGroup>
-                  <Label htmlFor="">Comment</Label>
-                  <Input type="textarea" rows="8" name="comment"
-                  innerRef={(input) => this.comment = input} />
-                </FormGroup>
+                  <Control.text 
+                    model=".username" 
+                    type="text"
+                    id="username" 
+                    name = "username"
+                    className="form-control"
+                    />
+                </Row>
+                <Row className="form-group">
+                  <Label htmlFor="comment">Comment</Label>
+                  <Control.textarea
+                   model=".comment"
+                   type="textarea" 
+                   rows="8" 
+                   name="comment"
+                   className="form-control"
+                   />
+                </Row>
                 <Button type="submit" value="submit" color="primary">Comment</Button>
-              </Form>
+              </LocalForm>
             </ModalBody>
           </Modal>
         </>
