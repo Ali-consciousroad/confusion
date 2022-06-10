@@ -5,6 +5,11 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb,
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
+  // Functions used for validation 
+  const required = (val) => val && val.length;
+  const maxLength = (len) => (val) => !(val) || (val.length <= len);
+  const minLength = (len) => (val) => val && (val.length >= len);
+  
   // function rendering the selected dish inside a boostrap card
   function RenderDish({dish}) {
     /* Return a card if the dish is not null 
@@ -121,12 +126,28 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
                 <Row className="form-group">
                   <Col md={12}>
                     <Label htmlFor="username">Username</Label>
-                    <Control.text 
-                      model=".username" 
-                      type="text"
-                      id="username" 
-                      name = "username"
-                      className="form-control"
+                      <Control.text 
+                        model=".username" 
+                        type="text"
+                        id="username" 
+                        name = "username"
+                        placeholder="Username"
+                        className="form-control"
+                        validators={{
+                          required,
+                          minLenght: minLength(5),
+                          maxLength: maxLength(15)
+                        }}
+                        />
+                      <Errors
+                        className="text-danger"
+                        model=".username"
+                        show="touched"
+                        messages={{
+                          required: 'Required',
+                          minLength: 'Must be greater than 4 charaters',
+                          maxLength: 'Must be 15 characters or less'
+                        }} 
                       />
                   </Col>
                 </Row>
