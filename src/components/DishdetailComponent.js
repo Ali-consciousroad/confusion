@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { Media } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
-  BreadcrumbItem, Button, Label, Modal, ModalHeader, ModalBody, Row} from "reactstrap";
+  BreadcrumbItem, Button, Label, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
@@ -99,42 +99,48 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
           <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
             <ModalHeader toggle={this.toggleModal}>Comment</ModalHeader>
             <ModalBody>
-              <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+              <LocalForm  onSubmit={(values) => this.handleSubmit(values)}>
                 <Row className="form-group">
-                  <Label htmlFor="rating">Rating</Label>
-                  <Control.select
-                    className="form-control"
-                    model=".ratings" 
-                    type="list"
-                    name="rating" 
-                    id="rating"
-                    >
-                      <option value="1"> 1 </option>
-                      <option value="2"> 2 </option>
-                      <option value="3"> 3 </option>
-                      <option value="4"> 4 </option>
-                      <option value="5"> 5 </option>
-                  </Control.select> 
+                  <Col md={12}>
+                    <Label htmlFor="rating">Rating</Label>
+                      <Control.select
+                        className="form-control"
+                        model=".ratings" 
+                        type="list"
+                        name="rating" 
+                        id="rating"
+                        >
+                          <option value="1"> 1 </option>
+                          <option value="2"> 2 </option>
+                          <option value="3"> 3 </option>
+                          <option value="4"> 4 </option>
+                          <option value="5"> 5 </option>
+                      </Control.select> 
+                  </Col>
                 </Row>
                 <Row className="form-group">
-                  <Label htmlFor="username">Username</Label>
-                  <Control.text 
-                    model=".username" 
-                    type="text"
-                    id="username" 
-                    name = "username"
+                  <Col md={12}>
+                    <Label htmlFor="username">Username</Label>
+                    <Control.text 
+                      model=".username" 
+                      type="text"
+                      id="username" 
+                      name = "username"
+                      className="form-control"
+                      />
+                  </Col>
+                </Row>
+                <Row className="form-group">
+                  <Col md={12}>
+                    <Label htmlFor="comment">Comment</Label>
+                    <Control.textarea
+                    model=".comment"
+                    type="textarea" 
+                    rows="8" 
+                    name="comment"
                     className="form-control"
                     />
-                </Row>
-                <Row className="form-group">
-                  <Label htmlFor="comment">Comment</Label>
-                  <Control.textarea
-                   model=".comment"
-                   type="textarea" 
-                   rows="8" 
-                   name="comment"
-                   className="form-control"
-                   />
+                  </Col>
                 </Row>
                 <Button type="submit" value="submit" color="primary">Comment</Button>
               </LocalForm>
