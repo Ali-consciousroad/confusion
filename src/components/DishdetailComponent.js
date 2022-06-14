@@ -33,7 +33,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
   }
 
   // 3.1 Function rendering the card containing the comments
-  function RenderComments({comments}) {
+  function RenderComments({comments, addComment, dishId}) {
     // console.log(this.props);
     if (comments != null) {
       // LOGIC
@@ -59,7 +59,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
         <>
           <h4>Comments</h4>
           {showComments}
-          <CommentForm />
+          <CommentForm dishId={dishId} addComment={addComment} />
         </>
       );
     } else {
@@ -90,8 +90,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 
     handleSubmit(values) {
       this.toggleModal();
-      console.log('Current State is: ' + JSON.stringify(values));
-      alert('Current State is: ' + JSON.stringify(values));
+      this.props.addComment(this.props.dishId, values.rating, values.username, values.comment);
     }
 
     render(){
@@ -202,7 +201,10 @@ class DishDetail extends Component {
               <RenderDish dish={this.props.dish} />
             </div>
             <div className="col-12 col-md-5 m-1 list-unstyled" >
-              <RenderComments comments={this.props.comments} />
+              <RenderComments 
+                comments={this.props.comments} 
+                addComment={this.props.addComment}
+                dishId={this.props.dish.id} />
             </div>
           </div>
         </div>

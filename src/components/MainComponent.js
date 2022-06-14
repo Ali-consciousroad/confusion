@@ -13,6 +13,11 @@ import Menu from "./MenuComponent";
 import DishDetail from "./DishdetailComponent";
 import Footer from './FooterComponent';
 import About from './AboutComponent';
+import { addComment } from '../redux/ActionCreators';
+
+const mapDispatchToProps = dispatch => ({
+  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment))
+});
 
  /* Function used to connect the part of the data from the store the component need. 
   These properties become available as props to the MainComponent 
@@ -55,7 +60,9 @@ class Main extends Component {
       const DishWithId = ({match}) => {
         return(
             <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
-              comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+              comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} 
+              addComment={this.props.addComment} 
+            />
         );
       };
 
@@ -84,4 +91,4 @@ class Main extends Component {
 }
 
 // withRouter is needed to connect the router to the Redux store
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
