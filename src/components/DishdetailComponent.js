@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import { Media } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
   BreadcrumbItem, Button, Label, Modal, ModalHeader, ModalBody, Row, Col } from "reactstrap";
+import { Loading } from './LoadingComponent';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
@@ -176,11 +177,30 @@ class DishDetail extends Component {
   constructor(props) {
     super(props);
   }
-  
+
     // console.log('DishDetail component render invoked')
     render(){
     const dish = this.props.dish;
-    if (dish == null) {
+    const loading = this.props.isLoading;
+    if (loading){
+      return(
+        <div className="container">
+          <div className="row">
+            <Loading />
+          </div>
+        </div>
+      );
+    }
+    else if (this.props.errMess) {
+      return(
+        <div className="container">
+          <div className="row">
+            <h4>{this.props.errMess}</h4>
+          </div>
+        </div>
+      );
+    }
+    else if (dish == null) {
       return <div></div>;
     } else {
       return (
