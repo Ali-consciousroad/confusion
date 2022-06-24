@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardTitle, CardBody, CardHeader, CardImgOverlay, Breadcrumb, BreadcrumbItem, Media } from 'reactstrap';
+import { Card, CardBody, CardHeader, Breadcrumb, BreadcrumbItem, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 const RenderLeader = ({leader}) => {
