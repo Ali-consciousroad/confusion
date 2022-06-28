@@ -178,7 +178,6 @@ class DishDetail extends Component {
   constructor(props) {
     super(props);
   }
-
     // console.log('DishDetail component render invoked')
     render(){
     const dish = this.props.dish;

@@ -14,10 +14,10 @@ export const addComment = (dishId, rating, author, comment) => ({
 
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
-
-    setTimeout(() => {
-        dispatch(addDishes(DISHES));
-    }, 2000);
+    // Fetch the dishes from the json-server
+    return fetch(baseUrl + "dishes")
+    .then(response => response.json())
+    .then(dishes => dispatch(addDishes(dishes)));
 }
 
 export const dishesLoading = () => ({
@@ -35,6 +35,7 @@ export const addDishes = (dishes) => ({
 });
 
 export const fetchComments = () => (dispatch) => {
+    // Fetch the comments from the json-server
     return fetch(baseUrl + 'comments')
         .then(response => response.json())
         .then(comments => dispatch(addComments(comments)));
@@ -54,6 +55,7 @@ export const fetchPromos = () => (dispatch) => {
     dispatch(promosLoading(true));
 
     return fetch(baseUrl + 'promotions')
+    // Fetch the promotions from the json-server
     .then(response => response.json())
     .then(promos => dispatch(addPromos(promos)));
 }

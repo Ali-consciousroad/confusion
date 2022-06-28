@@ -4,7 +4,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+
+## 1. Launch the json-server so our app can fetch the data 
+## 2. Available Scripts (launch the front-end app)
 
 In the project directory, you can run:
 
