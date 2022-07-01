@@ -13,8 +13,6 @@ export const Comments = (state = {
             
         case ActionTypes.ADD_COMMENT:
             var comment = action.payload;
-            comment.id = state.comments.length;
-            comment.date = new Date().toISOString();
             // ...state takes whatever is in the state (needed because the state has changed)
             // Concat() function doesn't modify the state but create a new state object
             return { ...state, comments: state.comments.concat(comment)};

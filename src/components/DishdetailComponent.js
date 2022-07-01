@@ -35,7 +35,7 @@ import { baseUrl } from '../shared/baseUrl';
   }
 
   // 3.1 Function rendering the card containing the comments
-  function RenderComments({comments, addComment, dishId}) {
+  function RenderComments({comments, postComment, dishId}) {
     // console.log(this.props);
     if (comments != null) {
       // LOGIC
@@ -61,7 +61,7 @@ import { baseUrl } from '../shared/baseUrl';
         <>
           <h4>Comments</h4>
           {showComments}
-          <CommentForm dishId={dishId} addComment={addComment} />
+          <CommentForm dishId={dishId} postComment={postComment} />
         </>
       );
     } else {
@@ -92,7 +92,7 @@ import { baseUrl } from '../shared/baseUrl';
 
     handleSubmit(values) {
       this.toggleModal();
-      this.props.addComment(this.props.dishId, values.rating, values.username, values.comment);
+      this.props.postComment(this.props.dishId, values.rating, values.username, values.comment);
     }
 
     render(){
@@ -136,7 +136,7 @@ import { baseUrl } from '../shared/baseUrl';
                         className="form-control"
                         validators={{
                           required,
-                          minLenght: minLength(5),
+                          minLenght: minLength(3),
                           maxLength: maxLength(15)
                         }}
                         />
@@ -223,7 +223,7 @@ class DishDetail extends Component {
             <div className="col-12 col-md-5 m-1 list-unstyled" >
               <RenderComments 
                 comments={this.props.comments} 
-                addComment={this.props.addComment}
+                postComment={this.props.postComment}
                 dishId={this.props.dish.id} />
             </div>
           </div>

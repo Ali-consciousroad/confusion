@@ -1,16 +1,49 @@
 import * as ActionTypes from './ActionTypes';
-import { DISHES } from '../shared/dishes';
 import { baseUrl } from '../shared/baseUrl';
 
-export const addComment = (dishId, rating, author, comment) => ({
+export const addComment = (comment) => ({
     type: ActionTypes.ADD_COMMENT, 
-    payload: {
-        dishId: dishId, 
-        rating: rating, 
-        author: author,
-        comment: comment 
-    }
+    payload: comment     
 });
+
+// Double arrow function and dispatch needed because we are using a Redux Thunk
+export const postComment = (dishId, rating, author, comment) => (dispatch) => {
+    const newComment = {
+        dishId: dishId,
+        rating: rating,
+        author: author,
+        comment: comment
+    };
+    newComment.date = new Date().toISOString();
+    // Post the comments in the server
+    return fetch(baseUrl + 'comments', {
+        method: "POST",
+        body: JSON.stringify(newComment),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+    .then(response => {
+        if (response.ok){
+            return response;
+        }   else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    // Error handler / Promise
+    error => {
+        var errmess = new Error(error.message);
+        throw error;
+    })
+    .then(response => response.json())
+        // Error handling 
+    .then(response => dispatch(addComment(response)))
+    .catch(error => { console.log('post comments', error.message); 
+        alert('Your comment could not be posted\nError: '+error.message); });
+}
 
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
