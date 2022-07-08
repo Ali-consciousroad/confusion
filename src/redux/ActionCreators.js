@@ -1,3 +1,5 @@
+// REDUX ACTIONS 
+/* Send data from the application to the redux store */ 
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
@@ -15,7 +17,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
         comment: comment
     };
     newComment.date = new Date().toISOString();
-    // Post the comments in the server
+    // Post the comments to the server
     return fetch(baseUrl + 'comments', {
         method: "POST",
         body: JSON.stringify(newComment),
@@ -45,6 +47,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
         alert('Your comment could not be posted\nError: '+error.message); });
 }
 
+// Fetch the dishes from the DB 
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
     // Fetch the dishes from the json-server
@@ -84,8 +87,8 @@ export const addDishes = (dishes) => ({
     payload: dishes
 });
 
+// Fetch the comments from the DB 
 export const fetchComments = () => (dispatch) => {
-    // Fetch the comments from the json-server
     return fetch(baseUrl + 'comments')
     .then(response => {
         if (response.ok){
@@ -104,7 +107,6 @@ export const fetchComments = () => (dispatch) => {
     .then(response => response.json())
     .then(comments => dispatch(addComments(comments)))
     .catch(error => dispatch(commentsFailed(error.message)));
-    
 };
 
 export const commentsFailed = (errmess) => ({
@@ -117,6 +119,7 @@ export const addComments = (comments) => ({
     payload: comments
 });
 
+// Fetch the promos from the DB 
 export const fetchPromos = () => (dispatch) => {
     dispatch(promosLoading(true));
 
@@ -153,4 +156,36 @@ export const promosFailed = (errmess) => ({
 export const addPromos = (promos) => ({
     type: ActionTypes.ADD_PROMOS,
     payload: promos
+});
+
+// // Fetch the authors from the DB 
+export const fetchLeaders = () => (dispatch) => {
+    return fetch(baseUrl + 'leaders')
+    .then(response => {
+        if (response.ok){
+            return response;
+        }   else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    // Error handler / Promise
+    error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(leaders => dispatch(addLeaders(leaders)))
+    .catch(error => dispatch(leadersFailed(error.message)));
+};
+
+export const leadersFailed = (errmess) => ({
+    type: ActionTypes.LEADERS_FAILED,
+    payload: errmess
+});
+
+export const addLeaders = (leaders) => ({
+    type: ActionTypes.ADD_LEADERS,
+    payload: leaders
 });
