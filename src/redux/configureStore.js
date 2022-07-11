@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 import { Dishes } from './dishes';
 import { Comments } from './comments';
+import { Feedbacks } from './feedbacks';
 import { Promotions } from './promotions';
 import { Leaders } from './leaders';
 
@@ -17,6 +18,7 @@ export const ConfigureStore = () => {
        combineReducers({
         dishes: Dishes,
         comments: Comments,
+        feedbacks: Feedbacks,
         promotions: Promotions,
         leaders: Leaders, 
         ...createForms({

@@ -8,6 +8,7 @@ export const addComment = (comment) => ({
     payload: comment     
 });
 
+// Post the comments to the server 
 // Double arrow function and dispatch needed because we are using a Redux Thunk
 export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     const newComment = {
@@ -45,6 +46,53 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     .then(response => dispatch(addComment(response)))
     .catch(error => { console.log('post comments', error.message); 
         alert('Your comment could not be posted\nError: '+error.message); });
+}
+
+export const addFeedback = (feedback) => ({
+    type: ActionTypes.ADD_FEEDBACK, 
+    payload: feedback     
+});
+
+// Post the feedbacks to the server 
+export const postFeedback = (firstname, lastname, telnum, email, agree, contactType, message) => (dispatch) => {
+    const newFeedback = {
+        firstname: firstname,
+        lastname: lastname,
+        telnum: telnum,
+        email: email,
+        agree: agree,
+        contactType: contactType,
+        message: message
+    };
+    newFeedback.date = new Date().toISOString();
+    // Post the feedbacks to the server
+    return fetch(baseUrl + 'feedback', {
+        method: "POST",
+        body: JSON.stringify(newFeedback),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+    .then(response => {
+        if (response.ok){
+            return response;
+        }   else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    // Error handler / Promise
+    error => {
+        var errmess = new Error(error.message);
+        throw error;
+    })
+    .then(response => response.json())
+        // Error handling 
+    .then(response => dispatch(addFeedback(response)))
+    .catch(error => { console.log('post feedbacks', error.message); 
+        alert('Your feedback could not be posted\nError: '+error.message); });
 }
 
 // Fetch the dishes from the DB 
@@ -119,6 +167,16 @@ export const addComments = (comments) => ({
     payload: comments
 });
 
+export const feedbacksFailed = (errmess) => ({
+    type: ActionTypes.FEEDBACKS_FAILED,
+    payload: errmess
+});
+
+export const addFeedbacks = (feedbacks) => ({
+    type: ActionTypes.ADD_FEEDBACKS,
+    payload: feedbacks
+});
+
 // Fetch the promos from the DB 
 export const fetchPromos = () => (dispatch) => {
     dispatch(promosLoading(true));
@@ -158,7 +216,7 @@ export const addPromos = (promos) => ({
     payload: promos
 });
 
-// // Fetch the authors from the DB 
+// Fetch the authors from the DB 
 export const fetchLeaders = () => (dispatch) => {
     return fetch(baseUrl + 'leaders')
     .then(response => {

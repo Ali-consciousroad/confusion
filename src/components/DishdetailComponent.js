@@ -1,3 +1,5 @@
+// Display the details of the selected dish from the menu
+
 import React, { Component } from "react";
 // import { Media } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
@@ -93,7 +95,7 @@ import { baseUrl } from '../shared/baseUrl';
         isModalOpen: !this.state.isModalOpen
       })
     }
-
+    // Submit the values and add them to the BE
     handleSubmit(values) {
       this.toggleModal();
       this.props.postComment(this.props.dishId, values.rating, values.username, values.comment);
@@ -109,7 +111,7 @@ import { baseUrl } from '../shared/baseUrl';
           <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
             <ModalHeader toggle={this.toggleModal}>Comment</ModalHeader>
             <ModalBody>
-              <LocalForm  onSubmit={(values) => this.handleSubmit(values)}>
+              <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                 <Row className="form-group">
                   <Col md={12}>
                     <Label htmlFor="rating">Rating</Label>
