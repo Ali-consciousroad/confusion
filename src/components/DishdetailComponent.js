@@ -1,5 +1,4 @@
 // Display the details of the selected dish from the menu
-
 import React, { Component } from "react";
 // import { Media } from "reactstrap";
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, 
