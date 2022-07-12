@@ -12,7 +12,7 @@ const RenderLeader = ({leader}) => {
         <Media key={id} className="col-12 mt-5">
             <Media tag="li">
                 <Media left middle> 
-                    <Media object src={image} alt={name} />
+                    <Media object src={baseUrl + image} alt={name} />
                 </Media>
                     <Media body className="ml-5">
                         <Media heading>
