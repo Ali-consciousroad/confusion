@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, CardBody, CardHeader, Breadcrumb, BreadcrumbItem, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
+import { Fade, Stagger } from 'react-animation-components';
+
 
 const RenderLeader = ({leader}) => {
     /* Destructure leader object props so we can use them with a shorter syntax
@@ -30,8 +32,9 @@ const About = props => {
     //console.log(props);
     const leaders = props.leaders.leaders.map((leader) => {
         return (
-            // <p>Leader {leader.name}</p>
-            <RenderLeader leader={leader}/>
+                <Fade in>
+                    <RenderLeader leader={leader}/>
+                </Fade>
         );
     });
 
@@ -91,7 +94,9 @@ const About = props => {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        {leaders}
+                        <Stagger in>
+                            {leaders}
+                        </Stagger>
                     </Media>
                 </div>
             </div>
