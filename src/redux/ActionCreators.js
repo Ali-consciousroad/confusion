@@ -39,7 +39,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     // Error handler / Promise
     error => {
         var errmess = new Error(error.message);
-        throw error;
+        throw errmess;
     })
     .then(response => response.json())
         // Error handling 
@@ -86,7 +86,7 @@ export const postFeedback = (firstname, lastname, telnum, email, agree, contactT
     // Error handler / Promise
     error => {
         var errmess = new Error(error.message);
-        throw error;
+        throw errmess;
     })
     .then(response => response.json())
         // Error handling 
